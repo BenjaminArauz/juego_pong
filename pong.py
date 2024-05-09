@@ -12,8 +12,7 @@ Exercises
 """
 
 from random import choice, random
-from turtle import *
-
+import turtle as t
 from freegames import vector
 
 
@@ -34,21 +33,21 @@ def move(player, change):
 
 def rectangle(x, y, width, height):
     """Draw rectangle at (x, y) with given width and height."""
-    up()
-    goto(x, y)
-    down()
-    begin_fill()
+    t.up()
+    t.goto(x, y)
+    t.down()
+    t.begin_fill()
     for count in range(2):
-        forward(width)
-        left(90)
-        forward(height)
-        left(90)
-    end_fill()
+        t.forward(width)
+        t.left(90)
+        t.forward(height)
+        t.left(90)
+    t.end_fill()
 
 
 def draw():
     """Draw game and move pong ball."""
-    clear()
+    t.clear()
     rectangle(-200, state[1], 10, 50)
     rectangle(190, state[2], 10, 50)
 
@@ -56,10 +55,10 @@ def draw():
     x = ball.x
     y = ball.y
 
-    up()
-    goto(x, y)
-    dot(10)
-    update()
+    t.up()
+    t.goto(x, y)
+    t.dot(10)
+    t.update()
 
     if y < -200 or y > 200:
         aim.y = -aim.y
@@ -82,16 +81,16 @@ def draw():
         else:
             return
 
-    ontimer(draw, 50)
+    t.ontimer(draw, 50)
 
 
-setup(420, 420, 370, 0)
-hideturtle()
-tracer(False)
-listen()
-onkey(lambda: move(1, 20), 'w')
-onkey(lambda: move(1, -20), 's')
-onkey(lambda: move(2, 20), 'i')
-onkey(lambda: move(2, -20), 'k')
+t.setup(420, 420, 370, 0)
+t.hideturtle()
+t.tracer(False)
+t.listen()
+t.onkey(lambda: move(1, 20), 'w')
+t.onkey(lambda: move(1, -20), 's')
+t.onkey(lambda: move(2, 20), 'i')
+t.onkey(lambda: move(2, -20), 'k')
 draw()
-done()
+t.done()
